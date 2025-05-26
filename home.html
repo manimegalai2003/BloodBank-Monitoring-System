@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank | Home</title>
+
+    <!-- Bootstrap & Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* General */
+        body {
+            background-color: #fcc3c3; /* Very Light Red */
+            font-family: 'Poppins', sans-serif;
+            color: #5c5c5c;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #eb9d9d; /* Muted Soft Red */
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            background: url('blood-donation-bg.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            flex-direction: column;
+            background-blend-mode: overlay;
+            background-color: rgba(244, 109, 116, 0.85); /* Slightly Transparent Soft Red */
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            background-color: #ff9999; /* Soft Red */
+            color: white;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #ff6666; /* Darker Soft Red */
+        }
+
+        /* About Section */
+        .about-section {
+            background: #fcc3c3; /* Light Pastel Red */
+            padding: 60px 0;
+        }
+
+        .section-heading {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+
+        .about-content {
+            text-align: justify;
+        }
+
+        .icon-box {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .icon-box:hover {
+            transform: scale(1.05);
+        }
+
+        .icon-box i {
+            font-size: 2.5rem;
+            color: #ff6666; /* Darker Soft Red */
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ✅ Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">🩸 Blood Bank</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                    <a class="nav-link dropdown-toggle" href="#" id="donorDropdown" role="button" data-bs-toggle="dropdown">
+                        Donor Management
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="find_donor.html">Find Donor</a></li>
+                        <li><a class="dropdown-item" href="become_donor.html">Become Donor</a></li>
+                        <li><a class="dropdown-item" href="donation_history.html">Donor History</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link btn btn-light ms-2" href="profile.html">Profile</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-light ms-2" href="admin dashboard.html">Admin Dasboard</a></li>
+                <li class="nav-item"><a class="btn btn-danger text-white ms-2" href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ✅ Hero Section -->
+<header id="home" class="hero">
+    <div class="container text-center">
+        <h1 class="fw-bold">Donate Blood, Save Lives ❤️</h1>
+        <p class="lead">Every drop of blood is a gift of life. Be a hero today.</p>
+        <a href="become_donor.html" class="btn btn-custom mt-3">Join as a Donor</a>
+    </div>
+</header>
+
+<!-- ✅ About Us Section -->
+<section id="about" class="about-section py-5">
+    <div class="container">
+        <!-- Section Title -->
+        <h2 class="section-heading text-center mb-4">About Us</h2>
+        <p class="text-center mb-5 lead">
+            We connect donors with patients in need, ensuring a steady blood supply for hospitals and emergencies.
+        </p>
+
+        <!-- Mission Content -->
+        <div class="card shadow border-0 p-4 text-center mb-4 bg-white">
+            <h3 class="mb-3"><i class="fas fa-hand-holding-heart text-danger me-2"></i> Our Mission</h3>
+            <p class="lead">We strive to create a world where no one has to suffer due to a lack of blood.</p>
+
+            <h3 class="mt-4"><i class="fas fa-heartbeat text-danger me-2"></i> Why Blood Donation Matters</h3>
+            <p class="lead">Every two seconds, someone needs blood. Your donation can help accident victims, cancer patients, and more.</p>
+
+            <h3 class="mt-4"><i class="fas fa-user-friends text-danger me-2"></i> How You Can Help</h3>
+            <ul class="list-unstyled lead">
+                <li><i class="fas fa-check-circle text-success"></i> Donate blood regularly to save lives.</li>
+                <li><i class="fas fa-check-circle text-success"></i> Encourage friends and family to donate.</li>
+                <li><i class="fas fa-check-circle text-success"></i> Participate in our community blood drives.</li>
+                <li><i class="fas fa-check-circle text-success"></i> Spread awareness about the importance of blood donation.</li>
+            </ul>
+        </div>
+
+        <!-- Image Section -->
+        <div class="row g-4">
+            <!-- Image 1 -->
+            <div class="col-md-4">
+                <img src="https://www.vitalant.org/getattachment/e44d1781-2c1e-4c33-98b2-a94b2a5154ac/vitalant_blood_donation_mental_health.png?lang=en-US&ext=.png"
+                    alt="Blood Donation" class="img-fluid img-equal shadow">
+            </div>
+
+            <!-- Image 2 -->
+            <div class="col-md-4">
+                <img src="https://media.istockphoto.com/id/1266747129/photo/doctor-holding-medical-exam.jpg?s=612x612&w=0&k=20&c=AjBcOoBPWhGj0vaz6FvP1WzHyiQG5RtbWECCvhgghtc="
+                    alt="Give Blood Save Lives" class="img-fluid img-equal shadow">
+            </div>
+
+            <!-- Image 3 -->
+            <div class="col-md-4">
+                <img src="https://www.concorde.edu/sites/default/files/styles/960x540/public/2024-11/phlebomist-vs-phlebotomy-technician.jpg.webp?itok=s3BbV1C_"
+                    alt="Voluntary Blood Donation" class="img-fluid img-equal shadow">
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Ensures all images are the same size */
+        .img-equal {
+            width: 150%;
+            height: 300px; /* Increased height */
+            object-fit: cover; /* Ensures images maintain aspect ratio */
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hover Effect */
+        .img-equal:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .col-md-4 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+
+            .img-equal {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .img-equal {
+                height: auto;
+            }
+        }
+    </style>
+</section>
+
+
+<!-- ✅ How It Works Section -->
+<section id="how-it-works" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-danger">How It Works</h2>
+            <p class="lead text-muted">A simple process to make a life-changing impact.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <!-- Step 1 -->
+            <div class="col-md-3 text-center">
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-user-plus fa-4x text-danger"></i>
+                    <h4 class="fw-bold mt-3">Register</h4>
+                    <p class="text-muted">Sign up easily as a donor or recipient.</p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="col-md-3 text-center">
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <i class="fas fa-search fa-4x text-danger"></i>
+                    <h4 class="fw-bold mt-3">Find a Match</h4>
+                    <p class="text-muted">Locate a donor or request blood with ease.</p>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="col-md-3 text-center">
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <i class="fas fa-hand-holding-heart fa-4x text-danger"></i>
+                    <h4 class="fw-bold mt-3">Donate & Save Lives</h4>
+                    <p class="text-muted">Visit a center and give the gift of life.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* General Section Styling */
+#how-it-works {
+    background: linear-gradient(to bottom, #fcc3c3, #fcc3c3);
+    padding-bottom: 70px;
+    text-align: center;
+}
+
+/* Enlarged Circular Step Box */
+.step-box {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    background: #fff;
+    border-radius: 50%; /* Makes it circular */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Hover Effect */
+.step-box:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Enlarged Number Badge */
+.step-number {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #dc3545;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 14px;
+    border-radius: 50px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .step-box {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .step-box {
+        width: 150px;
+        height: 150px;
+    }
+
+    .step-number {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+}
+</style>
+
+
+<!-- ✅ Why Donate Blood Section -->
+<section id="why-donate" class="py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold text-danger mb-4">Why Should You Donate Blood?</h2>
+        <p class="lead text-muted">Your donation can make a difference. Here’s why it matters:</p>
+
+        <div class="row mt-4">
+            <!-- Reason 1 -->
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="info-box">
+                    <i class="fas fa-heartbeat"></i>
+                    <h4>Save Lives</h4>
+                    <p>Every 2 seconds, someone needs blood. Your donation helps accident victims, surgery patients, and people with diseases like cancer.</p>
+                </div>
+            </div>
+
+            <!-- Reason 2 -->
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="info-box">
+                    <i class="fas fa-hands-helping"></i>
+                    <h4>It's Safe & Quick</h4>
+                    <p>Donating blood takes less than an hour. It's a simple, safe, and rewarding process.</p>
+                </div>
+            </div>
+
+            <!-- Reason 3 -->
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="info-box">
+                    <i class="fas fa-medkit"></i>
+                    <h4>Health Benefits</h4>
+                    <p>Regular donation improves heart health, balances iron levels, and boosts well-being.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <a href="become_donor.html" class="btn btn-danger btn-lg">Donate Now</a>
+        </div>
+    </div>
+</section>
+
+
+<style>
+   /* Why Donate Blood Section */
+#why-donate {
+    background: linear-gradient(to bottom, #fcc3c3, #fcc3c3);
+    padding: 60px 0;
+}
+
+/* Centering the Row */
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+/* Circular Info Box */
+.info-box {
+    background: #fff;
+    width: 250px; /* Set width */
+    height: 250px; /* Set height to make it a circle */
+    border-radius: 50%; /* Makes it circular */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* Icons */
+.info-box i {
+    font-size: 40px;
+    color: #dc3545;
+    margin-bottom: 10px;
+}
+
+/* Title */
+.info-box h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Description */
+.info-box p {
+    font-size: 14px;
+    color: #555;
+    max-width: 180px;
+}
+
+/* Hover Effect */
+.info-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Donate Button */
+.btn-danger {
+    font-size: 20px;
+    padding: 12px 30px;
+    border-radius: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .info-box {
+        width: 180px;
+        height: 180px;
+    }
+
+    .info-box p {
+        font-size: 13px;
+        max-width: 160px;
+    }
+}
+
+</style>
+
+<!-- ✅ Contact Section -->
+<section id="contact" class="py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold text-danger mb-4">Contact Us</h2>
+        <p class="lead text-muted">Reach out for any inquiries, support, or assistance.</p>
+
+        <div class="row justify-content-center mt-4">
+            <!-- Contact Info Card -->
+            <div class="col-md-4">
+                <div class="contact-box">
+                    <i class="fas fa-map-marker-alt fa-3x text-danger"></i>
+                    <h4 class="fw-bold mt-3">Address</h4>
+                    <p>123, Ganapathy, Coimbatore</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="contact-box">
+                    <i class="fas fa-envelope fa-3x text-danger"></i>
+                    <h4 class="fw-bold mt-3">Email</h4>
+                    <p><a href="mailto:support@bloodbank.com" class="contact-link">support@bloodbank.com</a></p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="contact-box">
+                    <i class="fas fa-phone fa-3x text-danger"></i>
+                    <h4 class="fw-bold mt-3">Phone</h4>
+                    <p><a href="tel:+1234567890" class="contact-link">+123 456 7890</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Contact Section Styling */
+    #contact {
+        background: linear-gradient(to bottom, #fcc3c3, #ff9999);
+        padding: 60px 0;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+    }
+
+    .contact-box {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        text-align: center;
+    }
+
+    .contact-box:hover {
+        transform: translateY(-8px);
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .contact-box h4 {
+        font-size: 22px;
+    }
+
+    .contact-box p {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
+    .contact-link {
+        text-decoration: none;
+        color: #dc3545;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .contact-link:hover {
+        color: #a71d2a;
+        text-decoration: underline;
+    }
+</style>
+<!-- ✅ Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #fcc3c3, #fcc3c3);
+            padding: 60px 0;
+        }
+        
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn-save {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-save:hover {
+            background: #b52b3b;
+        }
+    </style>
+</head>
+<body onload="loadProfileData()">
+
+<div class="container">
+    <h3 class="text-center"><i class="fas fa-user-edit"></i> Edit Profile</h3>
+    
+    <!-- Profile Picture -->
+    <div class="text-center">
+        <label for="uploadPhoto">
+            <img id="profilePhoto" class="profile-photo" src="default-avatar.png" alt="Profile">
+        </label>
+        <input type="file" id="uploadPhoto" class="d-none" accept="image/*">
+    </div>
+
+    <!-- Profile Form -->
+    <form id="editProfileForm">
+        <div class="form-group">
+            <label for="fullName"><i class="fas fa-user"></i> Full Name</label>
+            <input type="text" class="form-control" id="fullName" placeholder="Enter your name">
+        </div>
+
+        <div class="form-group">
+            <label for="bloodType"><i class="fas fa-tint"></i> Blood Type</label>
+            <select class="form-control" id="bloodType">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="A1B+">A1B+</option>
+                <option value="A1B-">A1B-</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="lastDonation"><i class="fas fa-calendar-alt"></i> Last Donation Date</label>
+            <input type="date" class="form-control" id="lastDonation">
+        </div>
+
+        <button type="button" class="btn btn-save btn-block" onclick="saveProfile()">Save Changes</button>
+        <a href="profile.html" class="btn btn-secondary btn-block mt-2">Cancel</a>
+    </form>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function loadProfileData() {
+    const userData = JSON.parse(localStorage.getItem('userProfile')) || {};
+
+    document.getElementById('fullName').value = userData.fullName || "";
+    document.getElementById('bloodType').value = userData.bloodType || "A+";
+    document.getElementById('lastDonation').value = userData.lastDonation || "";
+
+    document.getElementById('profilePhoto').src = userData.profilePhoto || "default-avatar.png";
+}
+
+// Function to handle profile photo upload
+document.getElementById('uploadPhoto').addEventListener('change', function(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        document.getElementById('profilePhoto').src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+});
+
+function saveProfile() {
+    const userData = {
+        fullName: document.getElementById('fullName').value,
+        bloodType: document.getElementById('bloodType').value,
+        lastDonation: document.getElementById('lastDonation').value,
+        profilePhoto: document.getElementById('profilePhoto').src
+    };
+
+    localStorage.setItem('userProfile', JSON.stringify(userData));
+    alert("Profile updated successfully!");
+    window.location.href = "profile.html";
+}
+</script>
+
+</body>
+</html>

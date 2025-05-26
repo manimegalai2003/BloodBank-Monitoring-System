@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* General Styles */
+        body {
+            background-color: #fef2f2;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #f06161;
+            color: white;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+            transition: 0.3s;
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 12px;
+            display: block;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .sidebar a:hover {
+            background-color: #b71c1c;
+        }
+
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        /* Responsive Sidebar */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .content {
+                margin-left: 210px;
+            }
+        }
+
+        /* Admin Profile */
+        .admin-profile-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-profile-card img {
+            border-radius: 50%;
+            width: 80px;
+        }
+
+        /* Quick Stats */
+        .stats-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stats-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+
+        /* Manage Donations */
+        .donation-table {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-approve {
+            background-color: #388e3c;
+            color: white;
+        }
+
+        .btn-reject {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        /* Logout */
+        .btn-logout {
+            background-color: #b71c1c;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-logout:hover {
+            background-color: #9b0000;
+        }
+
+        /* Chart */
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3 class="text-center">Admin Panel</h3>
+        <a href="#dashboard">Dashboard</a>
+        <a href="settings.html">Settings</a>
+        <a href="home.html">Home</a>
+        <a href="logout.html">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Admin Profile -->
+<div class="admin-profile-card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3H2ayqbbTuTuwaITrQfl4QHoguHEAFdvlcowZlVaoNTVNuFEjF2OL8Lc6pnkWzL73Zdo&usqp=CAU" alt="Admin">
+    <h4>AKSM BLOOD BANK Services</h4>
+    <p>Administrator | Blood Bank Management</p>
+</div>
+
+<!-- CSS to Increase Image Size -->
+<style>
+    .admin-profile-card img {
+        width: 150px;  /* Increased size */
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+</style>
+
+
+     <!-- Manage Donations Section -->
+<div class="container mt-4 donation-table">
+    <h4 class="text-center text-danger">Manage Donations</h4>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered text-center">
+            <thead class="table-light">
+                <tr class="bg-danger text-white">
+                    <th><i class="fas fa-user"></i> Donor Name</th>
+                    <th><i class="fas fa-tint"></i> Blood Type</th>
+                    <th><i class="fas fa-vial"></i> Unit</th>
+                    <th><i class="fas fa-hourglass-half"></i> Status</th>
+                    <th><i class="fas fa-cogs"></i> Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Manimegalai</td><td>A+</td><td>2</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Anushree</td><td>O-</td><td>1</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Karthikeyan</td><td>B+</td><td>3</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Revathi</td><td>A-</td><td>2</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Arunmozhi</td><td>O+</td><td>1</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Yazhini</td><td>AB-</td><td>3</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Vikraman</td><td>B-</td><td>2</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Janani</td><td>A+</td><td>1</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Murugan</td><td>O-</td><td>2</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Meenakshi</td><td>AB+</td><td>3</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Thirumalai</td><td>A-</td><td>1</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Pugazhendi</td><td>O+</td><td>1</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Gowtham</td><td>AB-</td><td>1</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+                <tr><td>Swathi</td><td>A+</td><td>2</td><td><span class="badge bg-warning text-dark">Pending</span></td>
+                    <td><button class="btn btn-success btn-sm"><i class="fas fa-check-circle"></i> Approve</button> 
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Reject</button></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+        <!-- Donations Graph -->
+<div class="container mt-5">
+    <div class="card shadow-lg" style="border-radius: 10px; overflow: hidden;">
+        <div class="card-header text-center text-white" style="background-color: #ee9da2; padding: 15px;">
+            <h3 style="font-weight: bold; letter-spacing: 1px;">📊 Donation Statistics</h3>
+        </div>
+        <div class="card-body" style="background: #fff5f5; padding: 30px;">
+            <div class="chart-container d-flex justify-content-center align-items-center" 
+                 style="height: 450px; width: 100%; position: relative;">
+                <canvas id="donationChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--JavaScript-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Select all rows in the table
+    document.querySelectorAll("tr").forEach(row => {
+        let approveButton = row.querySelector(".btn-success");
+        let rejectButton = row.querySelector(".btn-danger");
+        let statusCell = row.cells[3]; // Status column
+
+        if (approveButton) {
+            approveButton.addEventListener("click", function () {
+                statusCell.innerHTML = '<span class="badge bg-success text-white">Approved</span>';
+            });
+        }
+
+        if (rejectButton) {
+            rejectButton.addEventListener("click", function () {
+                statusCell.innerHTML = '<span class="badge bg-danger text-white">Rejected</span>';
+            });
+        }
+    });
+        // Initialize Chart.js
+        var ctx = document.getElementById('donationChart').getContext('2d');
+        var donationChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Donations',
+                    data: [10, 20, 50, 75, 25, 65, 10, 45, 15, 70, 55, 90],
+                    backgroundColor: [
+                        '#F8BBD0', '#F48FB1', '#F06292', '#E91E63', '#FFCDD2',
+                        '#D81B60', '#F9A1BC', '#E57373', '#EF9A9A', '#C2185B',
+                        '#FFABAB', '#B71C1C'
+                    ],
+                    borderColor: '#A93226',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Monthly Donations Trend 📊',
+                        font: { size: 18, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { font: { size: 14 } },
+                        title: {
+                            display: true,
+                            text: 'Donation Count',
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    },
+                    x: {
+                        ticks: { font: { size: 14 } },
+                        title: {
+                            display: true,
+                            text: 'Months',
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donor Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .dashboard-container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #dc3545;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            transition: 0.3s ease;
+        }
+
+        .sidebar h4 {
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.8);
+        }
+
+        .card-glass {
+            border-radius: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .list-group-item {
+            border-radius: 10px;
+            border: none;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Responsive Sidebar */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+        }
+    </style>    
+</head>
+<body onload="loadProfile()">
+
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h4><i class="fas fa-hand-holding-medical"></i> Dashboard</h4>
+        <a href="#"><i class="fas fa-user"></i> Profile</a>
+        <a href="donation_history.html"><i class="fas fa-history"></i> Donation History</a>
+        <a href="edit_profile.html" onclick="editProfile()"><i class="fas fa-edit"></i> Edit Profile</a>
+        <a href="home.html"><i class="fas fa-home"></i> Home</a>
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="profile-info text-center">
+            <label for="uploadPhoto">
+                <img id="profilePhoto" class="profile-photo" src="default-avatar.png" alt="Profile">
+            </label>
+            <input type="file" id="uploadPhoto" class="d-none" accept="image/*" onchange="previewPhoto(event)">
+            <h3 contenteditable="true" id="profileName">John Doe</h3>
+            <p><strong>Blood Type:</strong> <span contenteditable="true" id="profileBloodType">A1B+</span></p>
+        </div>
+
+        <!-- About & Donation Info -->
+        <div class="row mt-4">
+            <div class="col-lg-8">
+                <div class="card-glass">
+                    <h5>About</h5>
+                    <p contenteditable="true" id="profileBio">I am a dedicated blood donor who loves helping others. I donate blood regularly to save lives.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card-glass">
+                    <h6>Last Donation</h6>
+                    <p id="lastDonation">Feb 10, 2025</p>
+                </div>
+                <div class="card-glass">
+                    <h6>Next Eligible Donation</h6>
+                    <p id="nextDonation">May 10, 2025</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Donation History -->
+        <div class="card-glass">
+            <h6>🩸 Donation History</h6>
+            <ul id="donationList" class="list-group">
+                <li class="list-group-item">Feb 10, 2025 - City Hospital</li>
+                <li class="list-group-item">Oct 15, 2024 - Red Cross Center</li>
+                <li class="list-group-item">June 20, 2024 - Health Center</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function loadProfile() {
+    const userData = JSON.parse(localStorage.getItem('userProfile')) || {};
+    document.getElementById('profileName').textContent = userData.fullName || "John Doe";
+    document.getElementById('profileBloodType').textContent = userData.bloodType || "A1B+";
+    document.getElementById('profileBio').textContent = userData.bio || "I am a dedicated blood donor who loves helping others.";
+    document.getElementById('lastDonation').textContent = userData.lastDonation || "Feb 10, 2025";
+    document.getElementById('profilePhoto').src = userData.profilePhoto || "default-avatar.png";
+
+    if (userData.lastDonation) {
+        let lastDate = new Date(userData.lastDonation);
+        lastDate.setMonth(lastDate.getMonth() + 3);
+        document.getElementById('nextDonation').textContent = lastDate.toLocaleDateString();
+    }
+}
+
+function saveProfile() {
+    const userData = {
+        fullName: document.getElementById('profileName').textContent,
+        bloodType: document.getElementById('profileBloodType').textContent,
+        bio: document.getElementById('profileBio').textContent,
+        profilePhoto: document.getElementById('profilePhoto').src
+    };
+    localStorage.setItem('userProfile', JSON.stringify(userData));
+    alert("Profile Saved Successfully!");
+}
+
+function previewPhoto(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('profilePhoto').src = e.target.result;
+            saveProfile();
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function logout() {
+    alert("Logging out...");
+    window.location.href = "logout.html";
+}
+
+loadProfile();
+</script>
+
+</body>
+</html>

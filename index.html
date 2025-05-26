@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Login</title>
+    <style>
+        /* General Styles */
+        body {
+            background: #ffe5e5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Login Container */
+        .container {
+            display: flex;
+            width: 60%;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Left Section (Visuals) */
+        .left-section {
+            width: 50%;
+            background: linear-gradient(135deg, #ff8080, #ff4d4d);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .left-section h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .left-section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .left-section img {
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        /* Right Section (Login Form) */
+        .right-section {
+            width: 50%;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .right-section h2 {
+            color: #d32f2f;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        .right-section p {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* Input Box */
+        .input-box {
+            display: flex;
+            align-items: center;
+            background: #f8f8f8;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-box input {
+            border: none;
+            background: none;
+            margin-left: 10px;
+            flex: 1;
+            outline: none;
+            font-size: 14px;
+        }
+
+        /* Dropdown */
+        .role-box {
+            margin: 12px 0;
+            text-align: left;
+        }
+
+        .role-box select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: #f8f8f8;
+            font-size: 14px;
+        }
+
+        /* Login Button */
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #e60000;
+        }
+
+        /* Register Link */
+        .register {
+            margin-top: 15px;
+        }
+
+        .register a {
+            color: #d32f2f;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side -->
+        <div class="left-section">
+            <h2>Donate Blood, Save Lives!</h2>
+            <p>Your one donation can save up to 3 lives.</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3H2ayqbbTuTuwaITrQfl4QHoguHEAFdvlcowZlVaoNTVNuFEjF2OL8Lc6pnkWzL73Zdo&usqp=CAU" alt="Blood Donation">
+        </div>
+
+        <!-- Right Side (Login Form) -->
+        <div class="right-section">
+            <h2>🩸 Blood Bank Login</h2>
+            <p>Sign in to continue</p>
+            <form id="loginForm" action="#">
+                <div class="role-box">
+                    <label for="role">Select Role:</label>
+                    <select id="role" name="role">
+                        <option value="donor">Donor</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <span>👤</span>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="input-box">
+                    <span>🔒</span>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <div class="register">
+                <p>New user? <a href="register.html">Register here</a></p>
+            </div>
+        </div>
+    </div>
+<!-- Include SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        let role = document.getElementById("role").value;
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        
+        if (username === "" || password === "") {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please enter both username and password!",
+                confirmButtonColor: "#ff4d4d"
+            });
+            return;
+        }
+
+        // Stylish success message with SweetAlert2
+        Swal.fire({
+            icon: "success",
+            title: "Login Successful!",
+            text: role === "donor" ? "Redirecting to Home Page..." : "Redirecting to Admin Dashboard...",
+            showConfirmButton: false,
+            timer: 2000, // Auto-close after 2 seconds
+            timerProgressBar: true
+        }).then(() => {
+            if (role === "donor") {
+                window.location.href = "home.html"; // Redirect to donor homepage
+            } else if (role === "admin") {
+                window.location.href = "admin dashboard.html"; // Redirect to admin dashboard
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

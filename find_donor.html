@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Donor | Blood Bank</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        /* ✅ Global Styling */
+        body {
+            background: linear-gradient(to right, #fcc3c3, #ff9999);
+            font-family: 'Poppins', sans-serif;
+            color: #444;
+        }
+
+        /* ✅ Navbar */
+        .navbar {
+            background-color: #e57373 !important;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar .nav-link, .navbar-brand {
+            color: white !important;
+            font-weight: 500;
+        }
+        .navbar .nav-link:hover {
+            opacity: 0.85;
+        }
+
+        /* ✅ Find a Donor Section */
+        .donor-section {
+            max-width: 650px;
+            margin: 60px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-soft-red {
+            background-color: #d9534f;
+            color: white;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: 0.3s ease-in-out;
+        }
+        .btn-soft-red:hover {
+            background-color: #c9302c;
+            transform: scale(1.03);
+        }
+
+        /* ✅ Donor Results */
+        .donor-list {
+            max-width: 650px;
+            margin: auto;
+        }
+        .donor-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .donor-card strong {
+            color: #d9534f;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- ✅ Navbar -->
+<nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">🩸 Blood Bank</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="become_donor.html">Become a Donor</a></li>
+                <li class="nav-item"><a class="btn btn-soft-red" href="index.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ✅ Find a Donor Section -->
+<section class="donor-section">
+    <h2 class="text-center text-danger fw-bold">Find a Blood Donor</h2>
+    <p class="text-center">Search for donors based on blood type and location.</p>
+
+    <form id="findDonorForm">
+        <div class="mb-3">
+            <label for="bloodType" class="form-label">Select Blood Type:</label>
+            <select id="bloodType" class="form-select" required>
+                <option value="">Choose...</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="location" class="form-label">Enter Location:</label>
+            <input type="text" id="location" class="form-control" placeholder="City or Zip Code" required>
+        </div>
+
+        <button type="submit" class="btn btn-soft-red w-100">🔍 Search Donors</button>
+    </form>
+</section>
+
+<!-- ✅ Donor Results -->
+<div id="donorResults" class="donor-list"></div>
+
+<!-- ✅ Call to Action -->
+<section class="text-center mt-5">
+    <p class="fw-bold">Want to help? <a href="become_donor.html" class="text-danger">Register as a donor</a> today! ❤️</p>
+</section>
+
+<script>
+document.getElementById("findDonorForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    let bloodType = document.getElementById("bloodType").value;
+    let location = document.getElementById("location").value;
+    let donorResults = document.getElementById("donorResults");
+
+    if (bloodType && location) {
+        donorResults.innerHTML = `
+            <div class="alert alert-success text-center mt-3">
+                <strong>🔍 Searching for donors with ${bloodType} blood in ${location}...</strong>
+            </div>
+        `;
+
+        setTimeout(() => {
+            document.getElementById("donorResults").innerHTML = `
+                <div class="donor-card">
+    <div>
+        <strong>Arun Kumar</strong><br>
+        📍 ${location} <br> 📞 98765-43210
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Deepa Ramesh</strong><br>
+        📍 ${location} <br> 📞 87654-32109
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Karthik Raj</strong><br>
+        📍 ${location} <br> 📞 76543-21098
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Meena Lakshmi</strong><br>
+        📍 ${location} <br> 📞 65432-10987
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Siva Shankar</strong><br>
+        📍 ${location} <br> 📞 54321-09876
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Priya Dharshini</strong><br>
+        📍 ${location} <br> 📞 43210-98765
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Vignesh Prabhu</strong><br>
+        📍 ${location} <br> 📞 32109-87654
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Anjali Krishnan</strong><br>
+        📍 ${location} <br> 📞 21098-76543
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Hariharan Mani</strong><br>
+        📍 ${location} <br> 📞 10987-65432
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Lakshmi Narayanan</strong><br>
+        📍 ${location} <br> 📞 09876-54321
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Rajeshwari Mohan</strong><br>
+        📍 ${location} <br> 📞 98765-21098
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Senthil Kumar</strong><br>
+        📍 ${location} <br> 📞 87654-10987
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Revathi Ramesh</strong><br>
+        📍 ${location} <br> 📞 76543-09876
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Balaji Venkatesh</strong><br>
+        📍 ${location} <br> 📞 65432-98765
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Sowmya Rajendran</strong><br>
+        📍 ${location} <br> 📞 54321-87654
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Gokul Natarajan</strong><br>
+        📍 ${location} <br> 📞 43210-76543
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Aishwarya Vimal</strong><br>
+        📍 ${location} <br> 📞 32109-65432
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Murugan Velu</strong><br>
+        📍 ${location} <br> 📞 21098-54321
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Keerthana Srinivasan</strong><br>
+        📍 ${location} <br> 📞 10987-43210
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Prakash Chandran</strong><br>
+        📍 ${location} <br> 📞 09876-32109
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Nivedha Muthu</strong><br>
+        📍 ${location} <br> 📞 98765-65432
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Saravanan Perumal</strong><br>
+        📍 ${location} <br> 📞 87654-54321
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Janani Ram</strong><br>
+        📍 ${location} <br> 📞 76543-43210
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Thiru Arasu</strong><br>
+        📍 ${location} <br> 📞 65432-32109
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Divya Sivakumar</strong><br>
+        📍 ${location} <br> 📞 54321-21098
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Ganesan Mani</strong><br>
+        📍 ${location} <br> 📞 43210-10987
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Maheshwari Arun</strong><br>
+        📍 ${location} <br> 📞 32109-09876
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Udaya Kumar</strong><br>
+        📍 ${location} <br> 📞 21098-98765
+    </div>
+</div>
+<div class="donor-card">
+    <div>
+        <strong>Sundari Muthuraj</strong><br>
+        📍 ${location} <br> 📞 10987-87654
+    </div>
+</div>
+
+            `;
+        }, 2000);
+    }
+});
+</script>
+
+</body>
+</html>
