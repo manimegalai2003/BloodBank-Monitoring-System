@@ -37,5 +37,3 @@ bloodbank-monitoring/
 - Admin panel for managing donors and inventory
 - Email alerts for low blood stock
 
-## 📝 License
-This project is open-source and available under the [MIT License](LICENSE).
